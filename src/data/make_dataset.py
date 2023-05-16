@@ -3,6 +3,7 @@ import os
 from urllib.request import urlretrieve
 from urllib.parse import urlsplit
 import zipfile
+import tarfile
 import click
 import logging
 from pathlib import Path
@@ -32,6 +33,24 @@ CORDIS_CSV = ['https://cordis.europa.eu/data/FP6/cordis-fp6projects.csv',
              'https://cordis.europa.eu/data/FP1/cordis-fp1projects.csv']
 
 
+def download_tar(url, path):
+    tar_name = urlsplit(url).path.split('/')[-1]
+    untarred_folder = tar_name.split('.')[0]
+    tar_path = os.path.join(path, tar_name)
+    untarred_path = os.path.join(path, untarred_folder)
+    if not os.path.exists(untarred_path):
+        if not os.path.exists(tar_path):
+            logger.info('downloading %s' % url)
+            urlretrieve(url, tar_path)
+
+        logger.info('untar %s' % tar_name)
+        with tarfile.open(tar_path, "r:gz") as tar:
+            tar.extractall(untarred_path)
+
+        logger.info('cleaning')
+        os.remove(tar_path)
+
+
 def download_zip(url, path):
     zip_name = urlsplit(url).path.split('/')[-1]
     unzipped_folder = zip_name.split('.')[0]
@@ -42,7 +61,7 @@ def download_zip(url, path):
             logger.info('downloading %s' % url)
             urlretrieve(url, zip_path)
 
-        logger.info('unzipping zip_name')
+        logger.info('unzipping %s' % zip_name)
         zip_ref = zipfile.ZipFile(zip_path, 'r')
         zip_ref.extractall(unzipped_path)
         zip_ref.close()
@@ -67,6 +86,7 @@ def main(output_filepath):
     """
     download_zip(ROR_ZIP, output_filepath)
     download_csv(CONF_CSV, output_filepath)
+    download_tar(FULL_CONF, output_filepath)
 
     download_zip(HORIZON_ZIP, output_filepath)
     download_zip(H2020_ZIP, output_filepath)
