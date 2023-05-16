@@ -10,10 +10,15 @@ from dotenv import find_dotenv, load_dotenv
 
 logger = logging.getLogger(__name__)
 
-HORIZON_URL = 'https://cordis.europa.eu/data/cordis-HORIZONprojects-csv.zip'
-H2020_URL = 'http://cordis.europa.eu/data/cordis-h2020projects-csv.zip'
-FP7_URL = 'http://cordis.europa.eu/data/cordis-fp7projects-csv.zip'
-CSV_FILES = ['https://cordis.europa.eu/data/FP6/cordis-fp6projects.csv',
+ROR_ZIP = 'https://zenodo.org/record/7926988/files/v1.25-2023-05-11-ror-data.zip'
+CONF_CSV = ['https://raw.githubusercontent.com/andremann/SAVE-SD-2018ext/master/data/iswc_enhanced.csv',
+         'https://raw.githubusercontent.com/andremann/SAVE-SD-2018ext/master/data/tpdl_enhanced.csv ',
+         'https://raw.githubusercontent.com/andremann/SAVE-SD-2018ext/master/data/eswc_enhanced.csv']
+FULL_CONF = 'https://github.com/andremann/SAVE-SD-2018ext/raw/master/data/raw_data.tar.gz'
+HORIZON_ZIP = 'https://cordis.europa.eu/data/cordis-HORIZONprojects-csv.zip'
+H2020_ZIP = 'http://cordis.europa.eu/data/cordis-h2020projects-csv.zip'
+FP7_ZIP = 'http://cordis.europa.eu/data/cordis-fp7projects-csv.zip'
+CORDIS_CSV = ['https://cordis.europa.eu/data/FP6/cordis-fp6projects.csv',
              'https://cordis.europa.eu/data/FP6/cordis-fp6organizations.csv',
              'https://cordis.europa.eu/data/FP5/cordis-fp5organizations.csv',
              'https://cordis.europa.eu/data/FP5/cordis-fp5projects.csv',
@@ -60,10 +65,13 @@ def download_csv(urls, path):
 def main(output_filepath):
     """ Downloads data into ../raw.
     """
-    download_zip(HORIZON_URL, output_filepath)
-    download_zip(H2020_URL, output_filepath)
-    download_zip(FP7_URL, output_filepath)
-    download_csv(CSV_FILES, output_filepath)
+    download_zip(ROR_ZIP, output_filepath)
+    download_csv(CONF_CSV, output_filepath)
+
+    download_zip(HORIZON_ZIP, output_filepath)
+    download_zip(H2020_ZIP, output_filepath)
+    download_zip(FP7_ZIP, output_filepath)
+    download_csv(CORDIS_CSV, output_filepath)
 
 
 if __name__ == '__main__':
