@@ -31,7 +31,11 @@ CORDIS_CSV = ['https://cordis.europa.eu/data/FP6/cordis-fp6projects.csv',
              'https://cordis.europa.eu/data/FP2/cordis-fp2organizations.csv',
              'https://cordis.europa.eu/data/FP1/cordis-fp1organizations.csv',
              'https://cordis.europa.eu/data/FP1/cordis-fp1projects.csv']
-
+WOS = ['https://raw.githubusercontent.com/CWTSLeiden/CSSS/master/data-files/wos/tab-delimited/savedrecs_0001_0500.txt',
+       'https://raw.githubusercontent.com/CWTSLeiden/CSSS/master/data-files/wos/tab-delimited/savedrecs_0501_1000.txt',
+       'https://raw.githubusercontent.com/CWTSLeiden/CSSS/master/data-files/wos/tab-delimited/savedrecs_1001_1500.txt',
+       'https://raw.githubusercontent.com/CWTSLeiden/CSSS/master/data-files/wos/tab-delimited/savedrecs_1501_2000.txt',
+       'https://raw.githubusercontent.com/CWTSLeiden/CSSS/master/data-files/wos/tab-delimited/savedrecs_2001_2338.txt']
 
 def download_tar(url, path):
     tar_name = urlsplit(url).path.split('/')[-1]
@@ -70,7 +74,7 @@ def download_zip(url, path):
         os.remove(zip_path)
 
 
-def download_csv(urls, path):
+def download_files(urls, path):
     for url in urls:
         csv_name = urlsplit(url).path.split('/')[-1]
         csv_path = os.path.join(path, csv_name)
@@ -84,14 +88,19 @@ def download_csv(urls, path):
 def main(output_filepath):
     """ Downloads data into ../raw.
     """
-    download_zip(ROR_ZIP, output_filepath)
-    download_csv(CONF_CSV, output_filepath)
+    # Download publication subsets
+    download_files(CONF_CSV, output_filepath)
     download_tar(FULL_CONF, output_filepath)
+    download_files(WOS, os.path.join(output_filepath))
+    
+    # Download ROR organisations
+    download_zip(ROR_ZIP, output_filepath)
 
+    # Download EU projects
     download_zip(HORIZON_ZIP, output_filepath)
     download_zip(H2020_ZIP, output_filepath)
     download_zip(FP7_ZIP, output_filepath)
-    download_csv(CORDIS_CSV, output_filepath)
+    # download_files(CORDIS_CSV, output_filepath)
 
 
 if __name__ == '__main__':
