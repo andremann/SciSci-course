@@ -31,11 +31,15 @@ CORDIS_CSV = ['https://cordis.europa.eu/data/FP6/cordis-fp6projects.csv',
              'https://cordis.europa.eu/data/FP2/cordis-fp2organizations.csv',
              'https://cordis.europa.eu/data/FP1/cordis-fp1organizations.csv',
              'https://cordis.europa.eu/data/FP1/cordis-fp1projects.csv']
-WOS = ['https://raw.githubusercontent.com/CWTSLeiden/CSSS/master/data-files/wos/tab-delimited/savedrecs_0001_0500.txt',
+CSSS = ['https://raw.githubusercontent.com/CWTSLeiden/CSSS/master/data-files/wos/tab-delimited/savedrecs_0001_0500.txt',
        'https://raw.githubusercontent.com/CWTSLeiden/CSSS/master/data-files/wos/tab-delimited/savedrecs_0501_1000.txt',
        'https://raw.githubusercontent.com/CWTSLeiden/CSSS/master/data-files/wos/tab-delimited/savedrecs_1001_1500.txt',
        'https://raw.githubusercontent.com/CWTSLeiden/CSSS/master/data-files/wos/tab-delimited/savedrecs_1501_2000.txt',
-       'https://raw.githubusercontent.com/CWTSLeiden/CSSS/master/data-files/wos/tab-delimited/savedrecs_2001_2338.txt']
+       'https://raw.githubusercontent.com/CWTSLeiden/CSSS/master/data-files/wos/tab-delimited/savedrecs_2001_2338.txt',
+       'https://raw.githubusercontent.com/CWTSLeiden/CSSS/master/data-files/vosviewer/doc-term.txt',
+       'https://raw.githubusercontent.com/CWTSLeiden/CSSS/master/data-files/vosviewer/terms.txt',
+       'https://raw.githubusercontent.com/CWTSLeiden/CSSS/master/data-files/vosviewer/vosviewer_map.txt',
+       'https://raw.githubusercontent.com/CWTSLeiden/CSSS/master/data-files/vosviewer/vosviewer_network.txt']
 
 def download_tar(url, path):
     tar_name = urlsplit(url).path.split('/')[-1]
@@ -91,7 +95,7 @@ def main(output_filepath):
     # Download publication subsets
     download_files(CONF_CSV, output_filepath)
     download_tar(FULL_CONF, output_filepath)
-    download_files(WOS, os.path.join(output_filepath))
+    download_files(CSSS, os.path.join(output_filepath))
     
     # Download ROR organisations
     download_zip(ROR_ZIP, output_filepath)
