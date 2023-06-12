@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 ROR_ZIP = 'https://zenodo.org/record/7926988/files/v1.25-2023-05-11-ror-data.zip'
 CONF_CSV = ['https://raw.githubusercontent.com/andremann/SAVE-SD-2018ext/master/data/iswc_enhanced.csv',
-         'https://raw.githubusercontent.com/andremann/SAVE-SD-2018ext/master/data/tpdl_enhanced.csv ',
+         'https://raw.githubusercontent.com/andremann/SAVE-SD-2018ext/master/data/tpdl_enhanced.csv',
          'https://raw.githubusercontent.com/andremann/SAVE-SD-2018ext/master/data/eswc_enhanced.csv']
 FULL_CONF = 'https://github.com/andremann/SAVE-SD-2018ext/raw/master/data/raw_data.tar.gz'
 HORIZON_ZIP = 'https://cordis.europa.eu/data/cordis-HORIZONprojects-csv.zip'
