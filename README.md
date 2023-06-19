@@ -4,6 +4,8 @@ Science of science PhD course material.
 This repo contains a few Jupyter notebooks to be used as guidance for the hands-on sessions.
 To get going, please follow the instructions here: https://code-repo.d4science.org/sandro.labruzzo/openaire_beginners_kit
 
+Slides: https://drive.google.com/drive/folders/1iYRhvlFpjTf8o9eUfs7TMfaukmTjrZmt?usp=sharing
+
 Folder Organization
 ------------
 
