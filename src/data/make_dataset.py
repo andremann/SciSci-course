@@ -90,7 +90,7 @@ def download_files(urls, path):
 @click.command()
 @click.argument('output_filepath', type=click.Path(exists=True))
 def main(output_filepath):
-    """ Downloads data into ../raw.
+    """ Downloads data into /data/raw
     """
     # Download publication subsets
     download_files(CONF_CSV, output_filepath)
