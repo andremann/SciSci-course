@@ -94,7 +94,7 @@ def main(output_filepath):
     """
     # Download publication subsets
     download_files(CONF_CSV, output_filepath)
-    download_tar(FULL_CONF, output_filepath)
+    # download_tar(FULL_CONF, output_filepath)
     download_files(CSSS, os.path.join(output_filepath))
     
     # Download ROR organisations
